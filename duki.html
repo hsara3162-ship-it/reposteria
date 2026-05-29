@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>¡CONTACTANOS Y HAZ TU PEDIDO HOY MISMO!</title>
+
+<style>
+body{
+font-family: Arial;
+background-color: #b89b7a;
+margin: 0;
+padding: 0;
+}
+
+.form-container{
+width: 60%;
+margin: 80px auto;
+text-align: center;
+}
+
+h1{
+color: white;
+margin-bottom: 20px;
+}
+
+input, textarea{
+width: 100%;
+padding: 15px;
+margin: 10px 0;
+border: none;
+border-radius: 3px;
+font-size: 16px;
+}
+
+textarea{
+height: 100px;
+resize: none;
+}
+
+.btn{
+background-color: #222;
+color: white;
+padding: 15px 40px;
+border: none;
+cursor: pointer;
+float: right;
+}
+
+.btn:hover{
+background-color: black;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="form-container">
+<h1>¡CONTACTANOS Y HAZ TU PEDIDO HOY MISMO!</h1>
+
+<!--CAMBIA EL ACTION POR TU LINK DE FORMSPREE-->
+<form
+action="https://formspree.io/f/tu_codigo"
+method="POST">
+
+<input type="text" name="nombre"
+placeholder="nombre:" required>
+
+<input type="email" name="correo"
+placeholder="correo:" required>
+
+<textarea name="mensaje"
+placeholder=mensaje:" required></textarea>
+
+<button type="submit"
+class="btn">enviar</button>
+
+</form>
+</div>
+
+</body>
+</html>

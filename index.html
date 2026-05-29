@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dulce Delicia - Repostería</title>
+    <style>
+        :root {
+            --bg-principal: #fdfbf7;
+            --color-acento: #ff8c42;
+            --color-secundario: #c9f3ef;
+            --color-formulario: #b89b7a;
+            --texto-oscuro: #333;
+            --texto-claro: #fff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            background-color: var(--bg-principal);
+            color: var(--texto-oscuro);
+        }
+
+        nav {
+            width: 260px;
+            height: 100vh;
+            background-color: #2c3e50;
+            color: var(--texto-claro);
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            overflow-y: auto;
+        }
+
+        nav h1 {
+            text-align: center;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            font-size: 24px;
+            color: var(--color-secundario);
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .search-bar {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            box-sizing: border-box;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li a {
+            color: var(--texto-claro);
+            text-decoration: none;
+            display: block;
+            padding: 15px 25px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: background 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: var(--color-acento);
+        }
+
+        main {
+            margin-left: 260px;
+            padding: 40px;
+            width: calc(100% - 260px);
+            box-sizing: border-box;
+        }
+
+        .hero {
+            background-color: var(--color-acento);
+            color: var(--texto-claro);
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin: 10px 0;
+        }
+
+        .promo-box {
+            background-color: var(--color-secundario);
+            color: var(--texto-oscuro);
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 600px;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .category-title {
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 2.5em;
+            color: #5d4037;
+            margin-top: 50px;
+            border-bottom: 2px solid var(--color-acento);
+            padding-bottom: 10px;
+        }
+
+        .discount-badge {
+            text-align: center;
+            color: red;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .product-card h3 {
+            font-size: 1.2em;
+            margin: 15px 0 5px;
+            color: var(--texto-oscuro);
+        }
+
+        .product-card .price {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: var(--color-acento);
+            margin-bottom: 15px;
+        }
+
+        .btn-comprar {
+            background-color: var(--color-acento);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+
+        .btn-comprar:hover {
+            background-color: #e67e22;
+        }
+
+        .form-container {
+            background-color: var(--color-formulario);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 60px;
+            color: white;
+            text-align: center;
+        }
+
+        .form-container input, .form-container textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            margin: 10px auto;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            display: block;
+            box-sizing: border-box;
+        }
+
+        .form-container textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        .btn-enviar {
+            background-color: #222;
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .btn-enviar:hover {
+            background-color: black;
+        }
+
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            nav { width: 100%; height: auto; position: relative; }
+            main { margin-left: 0; width: 100%; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>DULCE DELICIA</h1>
+        
+        <div class="search-bar">
+            <form action="#busqueda" method="GET">
+                <input type="text" name="q" placeholder="Buscar por..." required>
+            </form>
+        </div>
+
+        <ul>
+            <li><a href="#inicio">🏠 Inicio</a></li>
+            <li><a href="#flanes">🍮 Flanes</a></li>
+            <li><a href="#gelatinas">🧃 Gelatinas</a></li>
+            <li><a href="#mousses">🧁 Mousses</a></li>
+            <li><a href="#natillas">🍨 Natillas y Pudines</a></li>
+            <li><a href="#helados">🍦 Helados</a></li>
+            <li><a href="#contacto">✉️ Contacto</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="inicio">
+            <div class="hero">
+                <img src="logo.jpg" alt="Logo Dulce Delicia" style="max-width: 200px; border-radius: 10px; margin-bottom: 20px;">
+                <h2>DULCE DELICIA</h2>
+                <h3>Repostería</h3>
+                <p style="color: yellow; font-size: 1.2em;">¡Ofertas especiales en nuestros deliciosos postres!</p>
+                
+                <div class="promo-box">
+                    ¡Cada pastel, cada postre y cada detalle están elaborados con pasión para endulzar los momentos más importantes de tu vida!
+                </div>
+
+                <p>¡Ven y disfruta tus postres favoritos al mejor precio!</p>
+                <div style="margin-top: 20px;">
+                    <a href="https://wa.me/527713558306" class="btn-comprar" target="_blank" style="font-size: 1.2em; background-color: #25D366;">📞 WhatsApp: 7713558306</a>
+                    <p>♡ @sitioincreible</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN FLANES -->
+        <section id="flanes">
+            <h2 class="category-title">FLANES</h2>
+            <div class="product-grid">
+                <div class="product-card"> <img src="60.jpg" alt="flan vainilla"> <h3>flan vainilla</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="61.jpg" alt="flan tradicional"> <h3>flan tradicional</h3> <div class="price">$180</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="62.jpg" alt="flan de chocolate"> <h3>flan de chocolate</h3> <div class="price">$190</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="63.jpg" alt="flan de cafe"> <h3>flan de cafe</h3> <div class="price">$163</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="64.jpg" alt="flan de coco"> <h3>flan de coco</h3> <div class="price">$170</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="65.jpg" alt="flan de queso"> <h3>flan de queso</h3> <div class="price">$200</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="66.jpg" alt="flan de cajeta"> <h3>flan de cajeta</h3> <div class="price">$180</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="67.jpg" alt="flan de rompope"> <h3>flan de rompope</h3> <div class="price">$140</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="68.jpg" alt="flan de almendra"> <h3>flan de almendra</h3> <div class="price">$110</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="69.jpg" alt="flan de naranja"> <h3>flan de naranja</h3> <div class="price">$120</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="70.jpg" alt="flan de limon"> <h3>flan de limon</h3> <div class="price">$140</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="71.jpg" alt="flan de fresa"> <h3>flan de fresa</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="72.jpg" alt="flan de mango"> <h3>flan de mango</h3> <div class="price">$158</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="73.jpg" alt="flan de maracuya"> <h3>flan de maracuya</h3> <div class="price">$145</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="74.jpg" alt="flan de guayaba"> <h3>flan de guayaba</h3> <div class="price">$138</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="75.jpg" alt="flan de papa"> <h3>flan de papa</h3> <div class="price">$180</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="76.jpg" alt="flan imposible"> <h3>flan imposible</h3> <div class="price">$152</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="77.jpg" alt="flan de elote"> <h3>flan de elote</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="78.jpg" alt="flan de calabaza"> <h3>flan de calabaza</h3> <div class="price">$120</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="79.jpg" alt="flan sin azucar"> <h3>flan sin azucar</h3> <div class="price">$125</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="80.jpg" alt="flan vegano"> <h3>flan vegano</h3> <div class="price">$156</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="81.jpg" alt="flan en porciones individuales"> <h3>flan en porciones individuales</h3> <div class="price">$60</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+                <div class="product-card"> <img src="59.jpg" alt="flan napolitano"> <h3>flan napolitano</h3> <div class="price">$135</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 4] -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN GELATINAS -->
+        <section id="gelatinas">
+            <h2 class="category-title">GELATINAS</h2>
+            <div class="product-grid">
+                <div class="product-card"> <img src="38.jpg" alt="gelatina mosaico"> <h3>gelatina mosaico</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="39.jpg" alt="gelatina artistica o 3D"> <h3>gelatina artistica o 3D</h3> <div class="price">$180</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="40.jpg" alt="gelatina de capas"> <h3>gelatina de capas</h3> <div class="price">$190</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="41.jpg" alt="gelatina marmoleada"> <h3>gelatina marmoleada</h3> <div class="price">$210</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="42.jpg" alt="gelatina rellena"> <h3>gelatina rellena</h3> <div class="price">$189</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="43.jpg" alt="gelatina en figuras"> <h3>gelatina en figuras</h3> <div class="price">$160</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="44.jpg" alt="gelatina en vaso individual"> <h3>gelatina en vaso individual</h3> <div class="price">$50</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="45.jpg" alt="gelatina encapsulada"> <h3>gelatina encapsulada</h3> <div class="price">$140</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="46.jpg" alt="gelatina de fresa"> <h3>gelatina de fresa</h3> <div class="price">$110</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="47.jpg" alt="gelatina de limon"> <h3>gelatina de limon</h3> <div class="price">$100</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="48.jpg" alt="gelatina de naranja"> <h3>gelatina de naranja</h3> <div class="price">$100</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="49.jpg" alt="gelatina de mango"> <h3>gelatina de mango</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="50.jpg" alt="gelatina de durazno"> <h3>gelatina de durazno</h3> <div class="price">$125</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="51.jpg" alt="gelatina de guayaba"> <h3>gelatina de guayaba</h3> <div class="price">$100</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="52.jpg" alt="gelatina de cafe"> <h3>gelatina de cafe</h3> <div class="price">$138</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="53.jpg" alt="gelatina de chocolate"> <h3>gelatina de chocolate</h3> <div class="price">$180</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="54.jpg" alt="gelatina de rompope"> <h3>gelatina de rompope</h3> <div class="price">$152</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="55.jpg" alt="gelatina de cajeta"> <h3>gelatina de cajeta</h3> <div class="price">$150</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="56.jpg" alt="gelatina con frutas naturales"> <h3>gelatina con frutas naturales</h3> <div class="price">$200</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="57.jpg" alt="gelatina con frutas en almibar"> <h3>gelatina con frutas en almibar</h3> <div class="price">$155</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+                <div class="product-card"> <img src="58.jpg" alt="gelatina con nuez o almendra"> <h3>gelatina con nuez o almendra</h3> <div class="price">$156</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 5] -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN MOUSSES -->
+        <section id="mousses">
+            <h2 class="category-title">MOUSSES</h2>
+            <p class="discount-badge">20% de descuento: Compra 2 y llévate 1 GRATIS (Promoción por tiempo limitado)</p>
+            <div class="product-grid">
+                <div class="product-card"> <img src="107.jpg" alt="mousse de chocolate"> <h3>mousse de chocolate</h3> <div class="price">$65</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="108.jpg" alt="mousse de chocolate blanco"> <h3>mousse de chocolate blanco</h3> <div class="price">$87</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="109.jpg" alt="mousse de fresa"> <h3>mousse de fresa</h3> <div class="price">$90</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="110.jpg" alt="mousse de limon"> <h3>mousse de limon</h3> <div class="price">$75</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="111.jpg" alt="mousse de mango"> <h3>mousse de mango</h3> <div class="price">$80</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="112.jpg" alt="mousse de maracuya"> <h3>mousse de maracuya</h3> <div class="price">$73</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="113.jpg" alt="mousse de zarzamora"> <h3>mousse de zarzamora</h3> <div class="price">$65</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="114.jpg" alt="mousse de cafe"> <h3>mousse de cafe</h3> <div class="price">$95</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="115.jpg" alt="mousse de vainilla"> <h3>mousse de vainilla</h3> <div class="price">$88</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="116.jpg" alt="mousse de coco"> <h3>mousse de coco</h3> <div class="price">$70</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="117.jpg" alt="mousse de queso"> <h3>mousse de queso</h3> <div class="price">$76</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="118.jpg" alt="mousse de guayaba"> <h3>mousse de guayaba</h3> <div class="price">$80</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+                <div class="product-card"> <img src="119.jpg" alt="mousse de frutos rojos"> <h3>mousse de frutos rojos</h3> <div class="price">$90</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 9] -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN NATILLAS -->
+        <section id="natillas">
+            <h2 class="category-title">NATILLAS, BUDINES Y PUDINES</h2>
+            <div class="product-grid">
+                <div class="product-card"> <img src="120.jpg" alt="natilla de vainilla"> <h3>natilla de vainilla</h3> <div class="price">$70</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="121.jpg" alt="natilla de chocolate"> <h3>natilla de chocolate</h3> <div class="price">$85</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="122.jpg" alt="natilla de coco"> <h3>natilla de coco</h3> <div class="price">$90</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="123.jpg" alt="natilla de maicena"> <h3>natilla de maicena</h3> <div class="price">$60</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="124.jpg" alt="pudin de pan"> <h3>pudin de pan</h3> <div class="price">$100</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="125.jpg" alt="pudin de chocolate"> <h3>pudin de chocolate</h3> <div class="price">$123</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="126.jpg" alt="pudin de vainilla"> <h3>pudin de vainilla</h3> <div class="price">$80</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="127.jpg" alt="budin de frutas"> <h3>budin de frutas</h3> <div class="price">$90</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="128.jpg" alt="budin de nuez"> <h3>budin de nuez</h3> <div class="price">$95</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+                <div class="product-card"> <img src="129.jpg" alt="budin de zanahoria"> <h3>budin de zanahoria</h3> <div class="price">$90</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 10] -->
+            </div>
+        </section>
+
+        <!-- SECCIÓN HELADOS -->
+        <section id="helados">
+            <h2 class="category-title">HELADOS Y POSTRES CONGELADOS</h2>
+            <div class="product-grid">
+                <div class="product-card"> <img src="145.jpg" alt="helado cremoso"> <h3>helado cremoso</h3> <div class="price">$55</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="146.jpg" alt="nieve"> <h3>nieve</h3> <div class="price">$40</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="147.jpg" alt="sorbete"> <h3>sorbete</h3> <div class="price">$54</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="148.jpg" alt="gelato"> <h3>gelato</h3> <div class="price">$60</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="149.jpg" alt="paletas heladas"> <h3>paletas heladas</h3> <div class="price">$40</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="150.jpg" alt="paletas de crema"> <h3>paletas de crema</h3> <div class="price">$35</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="151.jpg" alt="paletas de agua"> <h3>paletas de agua</h3> <div class="price">$30</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="152.jpg" alt="semifrio"> <h3>semifrio</h3> <div class="price">$65</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="153.jpg" alt="granizado"> <h3>granizado</h3> <div class="price">$70</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+                <div class="product-card"> <img src="154.jpg" alt="banana split"> <h3>banana split</h3> <div class="price">$100</div> <a href="pedido.html" class="btn-comprar">comprar</a> </div> <!--[cite: 6] -->
+            </div>
+        </section>
+
+        <section id="contacto">
+            <div class="form-container">
+                <h2>¡CONTÁCTANOS Y HAZ TU PEDIDO HOY MISMO!</h2>
+                <form action="https://formspree.io/f/tu_codigo" method="POST">
+                    <input type="text" name="nombre" placeholder="nombre:" required>
+                    <input type="email" name="correo" placeholder="correo:" required>
+                    <textarea name="mensaje" placeholder="mensaje:" required></textarea>
+                    <button type="submit" class="btn-enviar">enviar</button>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
+
